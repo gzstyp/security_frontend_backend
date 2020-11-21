@@ -1,9 +1,8 @@
-package com.acong.ssoserver.service;
+package com.fwtai.service;
 
+import com.fwtai.dao.UserDao;
+import com.fwtai.entity.User;
 import org.springframework.stereotype.Service;
-
-import com.acong.ssoserver.dao.UserDao;
-import com.acong.ssoserver.entity.User;
 
 import javax.annotation.Resource;
 

@@ -1,4 +1,4 @@
-package com.acong.ssoserver.config;
+package com.fwtai.config;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

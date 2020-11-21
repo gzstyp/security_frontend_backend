@@ -1,7 +1,7 @@
-package com.acong.ssoserver.controller;
+package com.fwtai.controller;
 
-import java.util.Map;
-
+import com.fwtai.entity.User;
+import com.fwtai.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.acong.ssoserver.entity.User;
-import com.acong.ssoserver.service.UserService;
+import java.util.Map;
 
 /**
  * Created by echisan on 2018/6/23

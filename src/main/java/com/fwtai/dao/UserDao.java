@@ -1,11 +1,9 @@
-package com.acong.ssoserver.dao;
+package com.fwtai.dao;
 
+import com.fwtai.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
-import com.acong.ssoserver.entity.User;
-
 import java.util.HashMap;
-import java.util.Map;
 
 @Mapper
 public interface UserDao {

@@ -1,4 +1,4 @@
-package com.acong.ssoserver;
+package com.fwtai;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.AuthenticationException;

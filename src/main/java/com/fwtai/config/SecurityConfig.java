@@ -1,9 +1,11 @@
-package com.acong.ssoserver.config;
+package com.fwtai.config;
 
+import com.fwtai.JWTAuthenticationEntryPoint;
+import com.fwtai.filter.JWTAuthenticationFilter;
+import com.fwtai.filter.JWTAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,10 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import com.acong.ssoserver.JWTAuthenticationEntryPoint;
-import com.acong.ssoserver.filter.JWTAuthenticationFilter;
-import com.acong.ssoserver.filter.JWTAuthorizationFilter;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)

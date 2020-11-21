@@ -1,4 +1,4 @@
-package com.acong.ssoserver.utils;
+package com.fwtai.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

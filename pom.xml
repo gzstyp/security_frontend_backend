@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.acong</groupId>
+	<groupId>com.fwtai</groupId>
 	<artifactId>security_frontend_backend</artifactId>
 	<version>v1.0.0</version>
 
@@ -13,7 +13,7 @@
 	</parent>
 
 	<description>
-        Spring Security 应用示例代码,前后端分离版本,无状态登录,final版本
+        Spring Security 应用示例代码,前后端分离版本,无状态登录,final版本,单个token
     </description>
 
 	<properties>

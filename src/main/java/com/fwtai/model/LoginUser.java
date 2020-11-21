@@ -1,4 +1,4 @@
-package com.acong.ssoserver.model;
+package com.fwtai.model;
 
 public class LoginUser {
 

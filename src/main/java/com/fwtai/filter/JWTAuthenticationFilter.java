@@ -1,16 +1,15 @@
-package com.acong.ssoserver.filter;
+package com.fwtai.filter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fwtai.entity.JwtUser;
+import com.fwtai.model.LoginUser;
+import com.fwtai.utils.JwtTokenUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import com.acong.ssoserver.entity.JwtUser;
-import com.acong.ssoserver.model.LoginUser;
-import com.acong.ssoserver.utils.JwtTokenUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

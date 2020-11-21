@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.acong.ssoserver.dao.UserDao">
+<mapper namespace="com.fwtai.dao.UserDao">
 
-    <insert id="save" parameterType="com.acong.ssoserver.entity.User">
+    <insert id="save" parameterType="com.fwtai.entity.User">
         insert into sys_user(id,username,password) values(#{id},#{username},#{password})
     </insert>
     
