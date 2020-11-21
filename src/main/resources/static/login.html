@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录认证</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <form action="/loginAuth" method="post">
+        <table>
+            <tr>
+                <td>登录账号</td>
+                <td><input class="inputStyle" type="text" value="root" name="userName"/></td>
+            </tr>
+            <tr>
+                <td>登录密码</td>
+                <td><input class="inputStyle" type="password" value="123" name="passWord"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="登录,其接口是/loginAuth" class="btn">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="/exit">退出</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

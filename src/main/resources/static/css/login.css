@@ -1,0 +1,22 @@
+﻿*{
+    padding:0;
+    margin:0;
+}
+a:link,a:visited,a:hover,a:active{
+    text-decoration: none;
+    outline:none;
+}
+.inputStyle{
+    text-decoration: none;
+    outline:none;
+    height:28px;
+    line-height:28px;
+    width:300px;
+}
+.btn{
+    border:0;color:#fff;
+    padding:4px 8px;
+    cursor:pointer;
+    width:100%;
+    background-color:#1f9df1;
+}
