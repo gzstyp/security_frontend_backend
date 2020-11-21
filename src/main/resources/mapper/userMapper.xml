@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.acong.ssoserver.dao.UserDao">
+
+    <insert id="save" parameterType="com.acong.ssoserver.entity.User">
+        insert into sys_user(id,username,password) values(#{id},#{username},#{password})
+    </insert>
+    
+    <select id="findByUsername" parameterType="String" resultType="HashMap">
+    	SELECT su.id,su.username,su.password,lt.roles FROM (
+            SELECT ur.user_id,GROUP_CONCAT(sr.role_name) roles from sys_role sr,user_role ur WHERE ur.user_id = 1 AND sr.kid = ur.role_id GROUP BY ur.user_id
+        ) lt , sys_user su WHERE su.id = lt.user_id
+    </select>
+    
+</mapper>
