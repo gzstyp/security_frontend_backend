@@ -3,7 +3,7 @@ package com.fwtai.filter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fwtai.entity.JwtUser;
 import com.fwtai.model.LoginUser;
-import com.fwtai.utils.JwtTokenUtils;
+import com.fwtai.tool.ToolJwt;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -27,7 +27,7 @@ import java.util.Collection;
 */
 public final class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
     public JWTAuthenticationFilter(final AuthenticationManager authenticationManager){
         this.authenticationManager = authenticationManager;
@@ -39,7 +39,8 @@ public final class JWTAuthenticationFilter extends UsernamePasswordAuthenticatio
     public Authentication attemptAuthentication(final HttpServletRequest request,final HttpServletResponse response) throws AuthenticationException{
         // 从输入流中获取到登录的信息
         try{
-            String username = request.getParameter("username");
+            final String userName = request.getParameter("username");
+            final String password = request.getParameter("password");
             final LoginUser loginUser = new ObjectMapper().readValue(request.getInputStream(),LoginUser.class);
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getUsername(),loginUser.getPassword()));
         }catch(IOException e){
@@ -66,7 +67,7 @@ public final class JWTAuthenticationFilter extends UsernamePasswordAuthenticatio
         // 按照jwt的规定，最后请求的时候应该是 `Bearer token`
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
-        final String tokenStr = JwtTokenUtils.TOKEN_PREFIX + token;
+        final String tokenStr = ToolJwt.TOKEN_PREFIX + token;
         response.setHeader("token",tokenStr);
         response.getWriter().write("登录成功");
     }

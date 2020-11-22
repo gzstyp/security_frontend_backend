@@ -4,6 +4,7 @@ import com.fwtai.entity.User;
 import com.fwtai.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,10 +28,16 @@ public class AuthController {
     // http://127.0.0.1:8090/auth/register
     @PostMapping("/register")
     public String registerUser(@RequestBody Map<String,String> registerUser){
-        User user = new User();
+        final User user = new User();
         user.setUsername(registerUser.get("username"));
         user.setPassword(bCryptPasswordEncoder.encode(registerUser.get("password")));
         userService.save(user);
         return "success";
+    }
+
+    //http://127.0.0.1:8090/auth/console
+    @GetMapping("/console")
+    public String console(){
+        return "console";
     }
 }

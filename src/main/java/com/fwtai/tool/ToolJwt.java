@@ -1,4 +1,4 @@
-package com.fwtai.utils;
+package com.fwtai.tool;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -8,18 +8,18 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JwtTokenUtils {
+public class ToolJwt{
 
     public static final String TOKEN_HEADER = "Authorization";
     public static final String TOKEN_PREFIX = "Bearer ";
 
-    private static final String SECRET = "jwtsecretdemo";
-    private static final String ISS = "echisan";
+    private static final String SECRET = "www.fwtai.com";
+    private static final String ISS = "www.dwz.cloud";
 
     // 角色的key
     private static final String ROLE_CLAIMS = "rol";
     
-    public static final String SUBJECT = "congge";
+    public static final String SUBJECT = "富翁泰";
 
     // 过期时间是3600秒，既是1个小时
     private static final long EXPIRATION = 3600L;
@@ -32,7 +32,7 @@ public class JwtTokenUtils {
     	
         //long expiration = isRememberMe ? EXPIRATION_REMEMBER : EXPIRATION;
     	
-    	long expiration = EXPIRATION_REMEMBER ;
+    	final long expiration = EXPIRATION_REMEMBER;
         
         final Map<String, Object> map = new HashMap<String, Object>();
         map.put(ROLE_CLAIMS, role);
