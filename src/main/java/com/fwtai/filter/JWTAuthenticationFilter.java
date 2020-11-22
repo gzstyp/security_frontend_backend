@@ -53,7 +53,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request,HttpServletResponse response,FilterChain chain,Authentication authResult) throws IOException, ServletException{
         final JwtUser jwtUser = (JwtUser) authResult.getPrincipal();
-        System.out.println("jwtUser:" + jwtUser.toString());
+        System.out.println("jwtUser:" + jwtUser.getUsername()+"->"+jwtUser.getAuthorities());
         final ArrayList<String> roles = new ArrayList<String>();
         final Collection<? extends GrantedAuthority> authorities = jwtUser.getAuthorities();
         for(GrantedAuthority authority : authorities){
