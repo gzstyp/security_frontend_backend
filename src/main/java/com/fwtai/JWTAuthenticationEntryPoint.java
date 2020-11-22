@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class JWTAuthenticationEntryPoint implements AuthenticationEntryPoint {
-	
-    public void commence(HttpServletRequest request,HttpServletResponse response,final AuthenticationException authException) throws IOException, ServletException {
+
+    public void commence(final HttpServletRequest request,final HttpServletResponse response,final AuthenticationException authException) throws IOException, ServletException {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        String reason = "统一处理，原因："+authException.getMessage();
+        String reason = "统一处理,原因："+authException.getMessage();
         response.getWriter().write(new ObjectMapper().writeValueAsString(reason));
     }
 }

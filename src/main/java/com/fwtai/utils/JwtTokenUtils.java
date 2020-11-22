@@ -34,11 +34,10 @@ public class JwtTokenUtils {
     	
     	long expiration = EXPIRATION_REMEMBER ;
         
-        Map<String, Object> map = new HashMap<String, Object>();
+        final Map<String, Object> map = new HashMap<String, Object>();
         map.put(ROLE_CLAIMS, role);
         
-        return 
-        		Jwts.builder()
+        return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS512, SECRET)
                 .setClaims(map)
                 .setIssuer(ISS)
@@ -64,8 +63,7 @@ public class JwtTokenUtils {
     // 从token中获取用户名
     public static String getUsername(String token){
         //return getTokenBody(token).getSubject();
-    	
-    	Claims claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
+    	final Claims claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
     	return claims.get("name").toString();
     	
     }

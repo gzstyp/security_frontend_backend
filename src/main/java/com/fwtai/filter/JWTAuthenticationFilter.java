@@ -25,7 +25,7 @@ import java.util.Collection;
  * attemptAuthentication：接收并解析用户凭证。
  * successfulAuthentication：用户成功登录后，这个方法会被调用，我们在这个方法里生成token并返回。
 */
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
+public final class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
     private AuthenticationManager authenticationManager;
 
@@ -68,6 +68,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setContentType("text/html;charset=utf-8");
         final String tokenStr = JwtTokenUtils.TOKEN_PREFIX + token;
         response.setHeader("token",tokenStr);
+        response.getWriter().write("登录成功");
     }
 
     @Override

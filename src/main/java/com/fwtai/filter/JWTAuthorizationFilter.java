@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * 验证成功当然就是进行鉴权了
  * 登录成功之后走此类进行鉴权操作
 */
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter{
+public final class JWTAuthorizationFilter extends BasicAuthenticationFilter{
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager){
         super(authenticationManager);
