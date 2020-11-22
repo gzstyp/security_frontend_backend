@@ -12,8 +12,7 @@ public class UserService {
 	@Resource
 	private UserDao userDao;
 
-	public void save(User user) {
-		user.setId(1);
+	public void save(final User user) {
 		userDao.save(user);
 	}
 }
