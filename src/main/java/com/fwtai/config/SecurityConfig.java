@@ -52,13 +52,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .permitAll()
             .and()
             .cors().and().csrf().disable()
-            .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-            .addFilter(new JWTAuthorizationFilter(authenticationManager()))
+            .addFilter(new JWTAuthenticationFilter(authenticationManager()))//登录成功后处理
+            .addFilter(new JWTAuthorizationFilter(authenticationManager()))//登录验证成功进行鉴权
             // 不需要session
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
-            .exceptionHandling()
+            .exceptionHandling()//未登录认证处理或无权限的处理
             .authenticationEntryPoint(new JWTAuthenticationEntryPoint());
     }
 
