@@ -23,6 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
         final User user = new User();
         final HashMap<String,Object> map = dao.findByUsername(username);//User包含角色和权限
+        if(map == null) throw new UsernameNotFoundException("哦,账号或密码有误");//它会走认证失败的回调,即方法 unsuccessfulAuthentication()
         user.setId(Integer.parseInt(map.get("id").toString()));
         user.setUsername(String.valueOf(map.get("username")));
         user.setPassword(String.valueOf(map.get("password")));

@@ -75,7 +75,7 @@ public final class JWTAuthenticationFilter extends UsernamePasswordAuthenticatio
 
     //登录认证失败调用
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request,HttpServletResponse response,AuthenticationException failed) throws IOException, ServletException{
+    protected void unsuccessfulAuthentication(final HttpServletRequest request,final HttpServletResponse response,final AuthenticationException failed) throws IOException, ServletException{
         final ToolClient client = new ToolClient();
         final String json = client.json(199,"认证失败,账号或密码错误,authentication failed, reason: " + failed.getMessage());
         client.responseJson(json,response);

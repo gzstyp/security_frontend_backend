@@ -24,16 +24,6 @@ public class TestJwtUtils{
 
     private static final String ROLE_CLAIMS = "rol";
 
-    public static String generateJsonWebToken(Users user){
-        if(user.getId() == null || user.getUserName() == null || user.getFaceImage() == null){
-            return null;
-        }
-        Map<String,Object> map = new HashMap<>();
-        map.put(ROLE_CLAIMS,"rol");
-        String token = Jwts.builder().setSubject(SUBJECT).setClaims(map).claim("id",user.getId()).claim("name",user.getUserName()).claim("img",user.getFaceImage()).setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis() + EXPIRITION)).signWith(SignatureAlgorithm.HS256,APPSECRET_KEY).compact();
-        return token;
-    }
-
     /**
      * 生成token
      * @param username
@@ -43,8 +33,7 @@ public class TestJwtUtils{
     public static String createToken(final String username,final ArrayList<String> roles){
         final Map<String,Object> map = new HashMap<>();
         map.put(ROLE_CLAIMS,roles);
-        String token = Jwts.builder().setSubject(username).setClaims(map).claim("username",username).setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis() + EXPIRITION)).signWith(SignatureAlgorithm.HS256,APPSECRET_KEY).compact();
-        return token;
+        return Jwts.builder().setSubject(username).setClaims(map).claim("username",username).setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis() + EXPIRITION)).signWith(SignatureAlgorithm.HS256,APPSECRET_KEY).compact();
     }
 
     public static Claims checkJWT(String token){
