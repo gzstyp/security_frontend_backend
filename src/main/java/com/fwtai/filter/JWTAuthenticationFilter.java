@@ -3,6 +3,7 @@ package com.fwtai.filter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fwtai.entity.JwtUser;
 import com.fwtai.model.LoginUser;
+import com.fwtai.tool.ToolClient;
 import com.fwtai.tool.ToolJwt;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -72,8 +73,11 @@ public final class JWTAuthenticationFilter extends UsernamePasswordAuthenticatio
         response.getWriter().write("登录成功");
     }
 
+    //登录认证失败调用
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request,HttpServletResponse response,AuthenticationException failed) throws IOException, ServletException{
-        response.getWriter().write("authentication failed, reason: " + failed.getMessage());
+        final ToolClient client = new ToolClient();
+        final String json = client.json(199,"认证失败,账号或密码错误,authentication failed, reason: " + failed.getMessage());
+        client.responseJson(json,response);
     }
 }
