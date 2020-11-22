@@ -19,13 +19,15 @@ public class TaskController {
 
     // http://127.0.0.1:8090/tasks/newTasks
     @PostMapping("/newTasks")
+    //@PreAuthorize("hasRole('ROLE_ADMIN')")//无效
+    //@PreAuthorize("hasRole('ADMIN')")//无效
     @PreAuthorize("hasAuthority('ADMIN')")
     //@PreAuthorize("hasAuthority('edit')")//都可以
     public String newTasks(){
         return "创建了一个新的任务";
     }
 
-    // http://127.0.0.1:8090/tasks/addTask //提示权限不足
+    // http://127.0.0.1:8090/tasks/addTask //提示:权限不足
     @PostMapping("/addTask")
     @PreAuthorize("hasAuthority('ADMIN0')")
     public String addTask(){

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+
 /**
  * 验证用户名密码正确后，生成一个token，并将token返回给客户端
  * 该类继承自UsernamePasswordAuthenticationFilter，重写了其中的2个方法 ,
