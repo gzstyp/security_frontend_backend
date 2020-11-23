@@ -10,11 +10,11 @@
         <table>
             <tr>
                 <td>登录账号</td>
-                <td><input class="inputStyle" type="text" value="root" name="userName"/></td>
+                <td><input class="inputStyle" type="text" value="root" name="username"/></td>
             </tr>
             <tr>
                 <td>登录密码</td>
-                <td><input class="inputStyle" type="password" value="123" name="passWord"/></td>
+                <td><input class="inputStyle" type="password" value="123" name="password"/></td>
             </tr>
             <tr>
                 <td colspan="2">
@@ -28,5 +28,9 @@
             </tr>
         </table>
     </form>
+    <br/>
+    采用 UsernamePasswordAuthenticationFilter 之后对请求的参数就没有要求了。即无需设置<br/>
+    .usernameParameter("userName")//请求时登录账号参数名,即表单的name,若使用了request.getInputStream()，则不好使!!!<br/>
+    .passwordParameter("password")//登录密码参数名,若使用了request.getInputStream()，则不好使!!!<br/>
 </body>
 </html>
