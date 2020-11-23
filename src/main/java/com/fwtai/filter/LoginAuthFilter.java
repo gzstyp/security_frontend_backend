@@ -29,6 +29,8 @@ public final class LoginAuthFilter extends UsernamePasswordAuthenticationFilter{
 
     private final AuthenticationManager authenticationManager;
 
+    private final ToolClient client = new ToolClient();
+
     public LoginAuthFilter(final AuthenticationManager authenticationManager){
         this.authenticationManager = authenticationManager;
         super.setFilterProcessesUrl("/loginAuth");//http://127.0.0.1:8090/loginAuth?password=admin&username=admin
@@ -39,7 +41,6 @@ public final class LoginAuthFilter extends UsernamePasswordAuthenticationFilter{
         final String username = request.getParameter("username");
         final String password = request.getParameter("password");
         if(username == null || username.isEmpty()){
-            final ToolClient client = new ToolClient();
             final String json = client.json(202,"请求参数不完整");
             client.responseJson(json,response);
             return null;
@@ -69,16 +70,15 @@ public final class LoginAuthFilter extends UsernamePasswordAuthenticationFilter{
         // 但是这里创建的token只是单纯的token
         // 按照jwt的规定，最后请求的时候应该是 `Bearer token`
         response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=utf-8");
         final String tokenStr = ToolJwt.TOKEN_PREFIX + token;
         response.setHeader("token",tokenStr);
-        response.getWriter().write("登录成功");
+        final String json = client.json(200,"登录成功");
+        client.responseJson(json,response);
     }
 
     //登录认证失败调用
     @Override
     protected void unsuccessfulAuthentication(final HttpServletRequest request,final HttpServletResponse response,final AuthenticationException failed) throws IOException, ServletException{
-        final ToolClient client = new ToolClient();
         final String json = client.json(199,"认证失败,账号或密码错误,authentication failed, reason: " + failed.getMessage());
         client.responseJson(json,response);
     }
