@@ -21,7 +21,7 @@ public class TaskController {
     @PostMapping("/newTasks")
     //@PreAuthorize("hasRole('ROLE_ADMIN')")//无效
     //@PreAuthorize("hasRole('ADMIN')")//无效
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")//当为@PreAuthorize("hasAuthority('XXX')")时角色权限名大小写都的，主要和数据库对应即可
     //@PreAuthorize("hasAuthority('edit')")//都可以
     public String newTasks(){
         return "创建了一个新的任务";
@@ -32,5 +32,12 @@ public class TaskController {
     @PreAuthorize("hasAuthority('ADMIN0')")
     public String addTask(){
         return "创建了一个新的任务";
+    }
+
+    // http://127.0.0.1:8090/tasks/admin
+    @PostMapping("/admin")
+    @PreAuthorize("hasRole('ADMIN88')")//此时的 ADMIN88 可加可不加前缀ROLE_都可以的,此时数据库保存的角色名必须是以ROLE_前缀
+    public String admin(){
+        return "操作成功,此时的 ADMIN 可加可不加前缀 ROLE_都可以的";
     }
 }
