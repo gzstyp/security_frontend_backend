@@ -11,7 +11,7 @@
  Target Server Version : 80022
  File Encoding         : 65001
 
- Date: 22/11/2020 12:50:21
+ Date: 23/11/2020 10:25:46
 */
 
 SET NAMES utf8mb4;
@@ -25,7 +25,7 @@ CREATE TABLE `sys_role`  (
   `kid` int(0) UNSIGNED NOT NULL AUTO_INCREMENT,
   `role_name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`kid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_role
@@ -33,7 +33,7 @@ CREATE TABLE `sys_role`  (
 INSERT INTO `sys_role` VALUES (1, 'ADMIN');
 INSERT INTO `sys_role` VALUES (2, 'USER');
 INSERT INTO `sys_role` VALUES (3, 'add');
-INSERT INTO `sys_role` VALUES (4, 'edit');
+INSERT INTO `sys_role` VALUES (4, 'ROLE_ADMIN88');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -44,12 +44,13 @@ CREATE TABLE `sys_user`  (
   `username` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 'admin', '$2a$10$TzMv9vk5qNyuheMV4TKpsuKMt/Q/o9ckG.UMmoJh5EWvW57fUTM82');
+INSERT INTO `sys_user` VALUES (3, 'admin2', 'ee');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -60,7 +61,7 @@ CREATE TABLE `user_role`  (
   `user_id` int(0) UNSIGNED NOT NULL,
   `role_id` int(0) UNSIGNED NOT NULL,
   PRIMARY KEY (`kid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_role
