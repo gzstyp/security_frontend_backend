@@ -53,7 +53,7 @@ public final class JWTAuthenticationFilter extends UsernamePasswordAuthenticatio
     // 成功验证后调用的方法
     // 如果验证成功，就生成token并返回
     @Override
-    protected void successfulAuthentication(HttpServletRequest request,HttpServletResponse response,FilterChain chain,Authentication authResult) throws IOException, ServletException{
+    protected void successfulAuthentication(final HttpServletRequest request,final HttpServletResponse response,final FilterChain chain,final Authentication authResult) throws IOException, ServletException{
         final JwtUser jwtUser = (JwtUser) authResult.getPrincipal();
         System.out.println("jwtUser:" + jwtUser.getUsername()+"->"+jwtUser.getAuthorities());
         final ArrayList<String> roles = new ArrayList<String>();

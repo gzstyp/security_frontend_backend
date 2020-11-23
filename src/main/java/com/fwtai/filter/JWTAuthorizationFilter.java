@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 */
 public final class JWTAuthorizationFilter extends BasicAuthenticationFilter{
 
-    public JWTAuthorizationFilter(AuthenticationManager authenticationManager){
+    public JWTAuthorizationFilter(final AuthenticationManager authenticationManager){
         super(authenticationManager);
     }
 
