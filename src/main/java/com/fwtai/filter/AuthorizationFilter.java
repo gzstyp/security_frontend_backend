@@ -17,12 +17,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * 鉴权操作
  * 验证成功当然就是进行鉴权,鉴权操作,无token时会提示'统一处理,需要认证才能访问'
  * 登录成功之后走此类进行鉴权操作
 */
-public final class JWTAuthorizationFilter extends BasicAuthenticationFilter{
+public final class AuthorizationFilter extends BasicAuthenticationFilter{
 
-    public JWTAuthorizationFilter(final AuthenticationManager authenticationManager){
+    public AuthorizationFilter(final AuthenticationManager authenticationManager){
         super(authenticationManager);
     }
 

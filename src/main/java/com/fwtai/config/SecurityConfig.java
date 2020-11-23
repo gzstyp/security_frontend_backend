@@ -1,8 +1,8 @@
 package com.fwtai.config;
 
 import com.fwtai.JWTAuthenticationEntryPoint;
-import com.fwtai.filter.JWTAuthenticationFilter;
-import com.fwtai.filter.JWTAuthorizationFilter;
+import com.fwtai.filter.AuthorizationFilter;
+import com.fwtai.filter.LoginAuthFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -52,8 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .permitAll()
             .and()
             .cors().and().csrf().disable()
-            .addFilter(new JWTAuthenticationFilter(authenticationManager()))//登录成功后处理
-            .addFilter(new JWTAuthorizationFilter(authenticationManager()))//登录验证成功进行鉴权
+            .addFilter(new LoginAuthFilter(authenticationManager()))//登录认证处理
+            .addFilter(new AuthorizationFilter(authenticationManager()))//鉴权处理
             // 不需要session
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
