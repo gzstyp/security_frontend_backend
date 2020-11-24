@@ -1,14 +1,17 @@
 package com.fwtai.filter;
 
 import com.fwtai.entity.JwtUser;
+import com.fwtai.service.UserService;
 import com.fwtai.tool.ToolClient;
 import com.fwtai.tool.ToolJwt;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -66,6 +69,10 @@ public final class LoginAuthFilter extends UsernamePasswordAuthenticationFilter{
             roles.add(authority.getAuthority());
         }
         final String token = TestJwtUtils.createToken(jwtUser.getUsername(),roles);
+
+        final BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
+        final UserService menu = factory.getBean(UserService.class);//解决spring boot无法注入bean的问题
+
         // 返回创建成功的token
         // 但是这里创建的token只是单纯的token
         // 按照jwt的规定，最后请求的时候应该是 `Bearer token`

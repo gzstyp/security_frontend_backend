@@ -1,11 +1,14 @@
 package com.fwtai.filter;
 
+import com.fwtai.service.UserService;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -36,15 +39,19 @@ public final class AuthorizationFilter extends BasicAuthenticationFilter{
             return;
         }
         // 如果请求头中有token，则进行解析，并且设置认证信息
-        SecurityContextHolder.getContext().setAuthentication(getAuthentication(tokenHeader));
+        SecurityContextHolder.getContext().setAuthentication(getAuthentication(tokenHeader,request));
         super.doFilterInternal(request,response,chain);
     }
 
     // 这里从token中获取用户信息并新建一个token
-    private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader){
+    private UsernamePasswordAuthenticationToken getAuthentication(final String tokenHeader,final HttpServletRequest request){
         final String token = tokenHeader.replace(TestJwtUtils.TOKEN_PREFIX,"");
         final String username = TestJwtUtils.getUsername(token);
         final List<String> authorities = TestJwtUtils.getUserRole(token);
+
+        final BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
+        final UserService menu = factory.getBean(UserService.class);//解决spring boot无法注入bean的问题
+
         if(username != null && authorities != null){
             return new UsernamePasswordAuthenticationToken(username,null,getAuthorities(authorities));
         }
